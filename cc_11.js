@@ -72,17 +72,57 @@ class Library {
         this.books.push(book);                      // Each new book will be push to the end of the list
     } ;
 
+    addBorrower(borrower) {
+        this.borrowers.push(borrower) ;             // So Task 4 can work by adding it to the list
+    }
+
     listBooks() {                                   // Listing method of all books in the console separately using forEach
-     this.books.forEach(book => {
+        this.books.forEach(book => {
         console.log(`Title: ${book.title}, Author: ${book.author}, ISBN: ${book.isbn}, Copies: ${book.copies}`) ;
       })                                            // Each book will be listed with all the above properties
     }
+
+// Task 4 - Implemented Book Borrowing
+
+    lendBook(borrowerId, isbn) {                    // Method that records the books borrewed by the library
+        const book = this.books.find(copy => copy.isbn === isbn) ;
+        const borrower = this.borrowers.find(copy => copy.borrowerId === borrowerId) ;
+        // Both of the methods above, use .find to pinpoint the corret borrowing transaction
+
+        if(!book) {
+            console.log(`Invalid selection. This book has not been found in the library.`) ;
+            return
+        }                                           // If book is not in library, return this message
+        
+        if(!borrower) {
+            console.log(`Borrower not found in database. Please try again.`)
+            return
+        }                                           // If the borrower is invalid, return the message
+        
+        if (book.copies > 0) {                      // Checks availability of the book
+            book.copies -= 1 ;
+            borrower.borrowBook(book.title) ;
+        console.log(`"${book.title}" has been successfully lent to ${borrower.name}.`) ;
+        }                                           // If the past checks are passed, and there are existencies, record the lend.
+        
+        else {
+            console.log(`There are no copies available for ${book.title}. Try again later on.`) ;
+        }                                           // If not available, return this message
+        
+    }
+    
 }
 
-// Test Data
+// Test Data --- Task 3
 const library = new Library();
 library.addBook(book1);
 library.listBooks();
 // Expected output: "Title: The Great Gatsby, Author: F. Scott Fitzgerald, ISBN: 123456, Copies: 4"
 
 
+// Test Data --- Task 4
+library.lendBook(201, 123456);
+console.log(book1.getDetails());
+// Expected output: "Title: The Great Gatsby, Author: F. Scott Fitzgerald, ISBN: 123456, Copies: 3"
+console.log(borrower1.borrowedBooks);
+// Expected output: ["The Great Gatsby"]
