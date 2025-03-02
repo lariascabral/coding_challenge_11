@@ -2,17 +2,17 @@
 
 class Book {
     constructor (title, author, isbn, copies) {
-        this.title = title,
-        this.author = author, 
-        this.isbn = isbn, 
-        this.copies = copies
+        this.title = title ;
+        this.author = author ;
+        this.isbn = isbn ;
+        this.copies = copies ;
     } ;                                             // Creation of the Book class
     getDetails() {                                  // Creates a method that returns details
         return `Title: ${this.title}, Author: ${this.author}, ISBN: ${this.isbn}, Copies: ${this.copies}`
     } ;                                             // Function retuns the each of the properties individually with titles
     
     updateCopies(quantity) {                        // Method to 
-        if (this.copies >= quantity) {              // First, checks if the copies available are greater than the quantity requested
+        if (this.copies + quantity >= 0) {          // Allows both borrowing and adding copies
             this.copies += quantity ;               // Reduce the copies' quantity by copies borrowed
     } else {
         console.log("Invalid request. Not enough copies available.") ;      // If no copies available, returns the message
@@ -36,17 +36,17 @@ console.log(book1.getDetails());
 class Borrower {
     constructor(name, borrowerId)
     {
-        this.name = name,
-        this.borrowerId = borrowerId, 
+        this.name = name ;
+        this.borrowerId = borrowerId ; 
         this.borrowedBooks = []                     // Array that will contain the borrowed books
     } ;
 
     borrowBook(book) {                              // Method to add borrowed books into the array
-        this.borrowedBooks.push(book);              // Each new borrowed book will be push to the end of the list
+        this.borrowedBooks.push(book) ;             // Each new borrowed book will be push to the end of the list
     } ;
 
     returnBook(book) {                              // Method to take out each returned book of the array
-    this.borrowedBooks = this.borrowedBooks.filter(copy => copy !== book);
+    this.borrowedBooks = this.borrowedBooks.filter(copy => copy !== book) ;
     }                                               // Filters list of borrowed books to eliminated a returned copy
 }
 
@@ -66,12 +66,12 @@ console.log(borrower1.borrowedBooks);
 
 class Library {
     constructor() {
-        this.books = [],                            // Creating of books array instances
+        this.books = [] ;                           // Creating of books array instances
         this.borrowers  = []                        // Creation of borrowers array
     } ;                                             // Creating Library class
 
     addBook(book) {                                 // Method to add new books into the Library class
-        this.books.push(book);                      // Each new book will be push to the end of the list
+        this.books.push(book) ;                      // Each new book will be push to the end of the list
     } ;
 
     addBorrower(borrower) {
