@@ -38,7 +38,7 @@ class Borrower {
     {
         this.name = name ;
         this.borrowerId = borrowerId ; 
-        this.borrowedBooks = []                     // Array that will contain the borrowed books
+        this.borrowedBooks = [] ;                   // Array that will contain the borrowed books
     } ;
 
     borrowBook(book) {                              // Method to add borrowed books into the array
@@ -46,7 +46,7 @@ class Borrower {
     } ;
 
     returnBook(book) {                              // Method to take out each returned book of the array
-    this.borrowedBooks = this.borrowedBooks.filter(copy => copy !== book) ;
+    this.borrowedBooks = this.borrowedBooks.filter(title => title !== book) ;
     }                                               // Filters list of borrowed books to eliminated a returned copy
 }
 
@@ -71,11 +71,11 @@ class Library {
     } ;                                             // Creating Library class
 
     addBook(book) {                                 // Method to add new books into the Library class
-        this.books.push(book) ;                      // Each new book will be push to the end of the list
+        this.books.push(book) ;                     // Each new book will be push to the end of the list
     } ;
 
-    addBorrower(borrower) {
-        this.borrowers.push(borrower) ;             // So Task 4 can work by adding it to the list
+    addBorrower(borrower) {                         // Method that add borrowers to the end of the list --- For Task 4 purposes
+        this.borrowers.push(borrower) ;
     }
 
     listBooks() {                                   // Listing method of all books in the console separately using forEach
@@ -149,6 +149,7 @@ library.listBooks();
 // Expected output: "Title: The Great Gatsby, Author: F. Scott Fitzgerald, ISBN: 123456, Copies: 4"
 
 // Test Data --- Task 4
+library.addBorrower(borrower1) ;                    // Adding borrower for testing purposes
 library.lendBook(201, 123456);
 console.log(book1.getDetails());
 // Expected output: "Title: The Great Gatsby, Author: F. Scott Fitzgerald, ISBN: 123456, Copies: 3"
