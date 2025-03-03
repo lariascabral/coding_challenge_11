@@ -127,21 +127,20 @@ class Library {
         if(!book) {
             console.log(`Invalid selection. This book has not been found in the library.`) ;
             return
-        }                                          // If book is not in library, cannot be returned; return this message
+        }                                           // If book is not in library, cannot be returned; return this message
         
         if(!borrower) {
             console.log(`Borrower not found in database.`)
             return
-        }                                          // If the borrower is invalid, return the message
+        }                                           // If the borrower is invalid, return the message
         
-        book.copies += 1 ;                         // Returns the book by adding it back to the copies available
+        book.copies += 1 ;                          // Returns the book by adding it back to the copies available
         borrower.returnBook(book.title) ;
         console.log(`"${book.title}" has been successfully returned by ${borrower.name}.`) ;
-        }                                          // If the past checks are passed, finalizes the return
+        }                                           // If the past checks are passed, finalizes the return
 
 }
     
-
 // Test Data --- Task 3
 const library = new Library();
 library.addBook(book1);
